@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تحديد مستوى الطفل في الروضة</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 550px;
+      width: 100%;
+      border: 3px solid #4fc3f7;
+    }
+
+    h2 {
+      color: #0277bd;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    label {
+      font-size: 20px;
+      color: #333;
+    }
+
+    input[type="date"] {
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 18px;
+      width: 90%;
+      border: 2px solid #81d4fa;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0277bd;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #00695c;
+    }
+
+    #hijriInfo {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>حاسبة مستوى الطفل في الروضة</h2>
+    <label for="birthDate">أدخل تاريخ ميلاد الطفل:</label><br>
+    <input type="date" id="birthDate"><br>
+    <button onclick="checkLevel()">عرض المستوى</button>
+    <div id="result"></div>
+    <div id="hijriInfo"></div>
+  </div>
+
+  <script>
+    function checkLevel() {
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      const result = document.getElementById('result');
+      const hijriInfo = document.getElementById('hijriInfo');
+
+      const level3Start = new Date('2019-08-26');
+      const level3End = new Date('2020-08-25');
+
+      const level2Start = new Date('2020-08-26');
+      const level2End = new Date('2021-08-25');
+
+      const level1Start = new Date('2021-08-26');
+      const level1End = new Date('2022-08-25');
+
+      let level = "";
+      if (birthDate >= level3Start && birthDate <= level3End) {
+        level = "المستوى الثالث";
+        hijriInfo.textContent = "من 25 ذو الحجة 1440 هـ إلى 5 محرم 1442 هـ تقريبًا";
+      } else if (birthDate >= level2Start && birthDate <= level2End) {
+        level = "المستوى الثاني";
+        hijriInfo.textContent = "من 6 محرم 1442 هـ إلى 16 محرم 1443 هـ تقريبًا";
+      } else if (birthDate >= level1Start && birthDate <= level1End) {
+        level = "المستوى الأول";
+        hijriInfo.textContent = "من 17 محرم 1443 هـ إلى 27 محرم 1444 هـ تقريبًا";
+      } else {
+        level = "خارج نطاق أعمار الروضة المحددة.";
+        hijriInfo.textContent = "";
+      }
+
+      result.textContent = level;
+    }
+  </script>
+</body>
+</html>
