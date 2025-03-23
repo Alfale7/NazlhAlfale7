@@ -365,6 +365,13 @@
       document.getElementById('month').addEventListener('change', populateDays);
     };
 
+function resetResult() {
+  document.getElementById('resultDisplay').textContent = "";
+  document.getElementById('calendarType').value = 'gregorian';
+  updateCalendar();
+}
+
+
     function hijriToGregorian(hYear, hMonth, hDay) {
       const approxDate = new Date((hYear - 579) + "-" + hMonth + "-" + hDay);
       return approxDate;
@@ -421,20 +428,61 @@ function calculateLevel() {
   resultDisplay.innerHTML = `
   ${fullResult}
   <br><br>
-  <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(fullResult)}" target="_blank" style="
-    display: inline-block;
-    margin-top: 10px;
-    background-color: #25D366;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  ">مشاركة عبر واتساب</a>
+  <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(fullResult)}" target="_blank" style="
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    ">مشاركة عبر واتساب</a>
+
+    <button onclick="resetResult()" style="
+      background-color: #d4b57d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    ">إعادة التقييم</button>
+
+    <button onclick="shareAsImage()" style="
+      background-color: #4D8F8F;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    ">مشاركة النتيجة كصورة</button>
+  </div>
 `;
   resultDisplay.classList.add('show');
+}
+function shareAsImage() {
+  html2canvas(document.getElementById('resultDisplay')).then(canvas => {
+    canvas.toBlob(blob => {
+      const file = new File([blob], "النتيجة.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({
+          files: [file],
+          title: 'مستوى الطفل في الروضة',
+          text: 'شوف نتيجة طفلك!',
+        });
+      } else {
+        alert("المشاركة غير مدعومة في هذا المتصفح. جرب من جوال حديث.");
+      }
+    });
+  });
 }
   </script>
 </body>
