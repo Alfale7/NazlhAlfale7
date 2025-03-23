@@ -421,6 +421,24 @@ function calculateLevel() {
   const fullResult = `مستوى الطفل : ${resultText} ${emoji}`;
   const whatsappLink = `https://wa.me/?text=${encodeURIComponent(fullResult)}`;
 
+function shareAsImage() {
+  html2canvas(document.getElementById('resultDisplay')).then(canvas => {
+    canvas.toBlob(blob => {
+      const file = new File([blob], "النتيجة.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({
+          files: [file],
+          title: 'مستوى الطفل في الروضة',
+          text: 'شوف نتيجة طفلك!',
+        });
+      } else {
+        alert("المشاركة غير مدعومة في هذا المتصفح. جرب من جوال حديث.");
+      }
+    });
+  });
+}
+
   const resultDisplay = document.getElementById('resultDisplay');
   resultDisplay.classList.remove('show'); 
   void resultDisplay.offsetWidth;
@@ -467,23 +485,7 @@ function calculateLevel() {
 `;
   resultDisplay.classList.add('show');
 }
-function shareAsImage() {
-  html2canvas(document.getElementById('resultDisplay')).then(canvas => {
-    canvas.toBlob(blob => {
-      const file = new File([blob], "النتيجة.png", { type: "image/png" });
 
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        navigator.share({
-          files: [file],
-          title: 'مستوى الطفل في الروضة',
-          text: 'شوف نتيجة طفلك!',
-        });
-      } else {
-        alert("المشاركة غير مدعومة في هذا المتصفح. جرب من جوال حديث.");
-      }
-    });
-  });
-}
   </script>
 </body>
 </html>
