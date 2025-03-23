@@ -272,7 +272,7 @@
       <img src="ministry-logo.png" class="ministry-logo" alt="شعار الوزارة">
     </div>
 
-    <h1 class="main-title">نظام تحديد المستوى التعليمي</h1>
+    <h1 class="main-title">تحديد مستوى الطفل في الروضة</h1>
 
     <div class="calendar-type">
       <select id="calendarType" class="royal-select" onchange="updateCalendar()">
@@ -369,7 +369,6 @@
       const approxDate = new Date((hYear - 579) + "-" + hMonth + "-" + hDay);
       return approxDate;
     }
-
 function calculateLevel() {
   const calendarType = document.getElementById('calendarType').value;
   const y = parseInt(document.getElementById('year').value);
@@ -396,21 +395,45 @@ function calculateLevel() {
   const level1End = new Date(2022, 7, 25);
 
   let resultText = '';
+  let emoji = '';
 
   if (birthDate >= level3Start && birthDate <= level3End) {
-    resultText = 'المستوى الثالث 🧒🏻 🎉';
+    resultText = 'المستوى الثالث';
+    emoji = '🧒🏻 🎉';
   } else if (birthDate >= level2Start && birthDate <= level2End) {
-    resultText = 'المستوى الثاني 🧒🏻 🎉';
+    resultText = 'المستوى الثاني';
+    emoji = '🧒🏻 🎉';
   } else if (birthDate >= level1Start && birthDate <= level1End) {
-    resultText = 'المستوى الأول 🧒🏻 🎉';
+    resultText = 'المستوى الأول';
+    emoji = '🧒🏻 🎉';
   } else {
-    resultText = 'تاريخ الميلاد خارج نطاق أعمار الروضة ❌ 📅';
+    resultText = 'تاريخ الميلاد خارج نطاق أعمار الروضة';
+    emoji = '📅 ❌';
   }
 
+  const fullResult = `مستوى الطفل : ${resultText} ${emoji}`;
+  const whatsappLink = `https://wa.me/?text=${encodeURIComponent(fullResult)}`;
+
   const resultDisplay = document.getElementById('resultDisplay');
-  resultDisplay.classList.remove('show'); // علشان يعيد التأثير إذا ضغط مرتين
-  void resultDisplay.offsetWidth; // لإعادة تشغيل الأنيميشن
-  resultDisplay.textContent = `مستوى الطفل: ${resultText}`;
+  resultDisplay.classList.remove('show'); 
+  void resultDisplay.offsetWidth;
+
+  resultDisplay.innerHTML = `
+  ${fullResult}
+  <br><br>
+  <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(fullResult)}" target="_blank" style="
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  ">مشاركة عبر واتساب</a>
+`;
   resultDisplay.classList.add('show');
 }
   </script>
