@@ -1,122 +1,418 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>تحديد مستوى الطفل في الروضة</title>
+
+<!-- وسوم Open Graph للمعاينة -->
+<meta property="og:title" content="تحديد مستوى الطفل في الروضة">
+<meta property="og:description" content="نظام إلكتروني لتحديد مستوى الطفل في رياض الأطفال   ">
+<meta property="og:image" content="https://alfale7.github.io/NazlhAlfale7/cover.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alfale7.github.io/NazlhAlfale7/">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نظام المستويات التعليمية الفاخر</title>
   <style>
+
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .luxury-frame {
+    animation: fadeInUp 1s ease-in-out both;
+  }
+
+@keyframes resultBounce {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#resultDisplay.show {
+  animation: resultBounce 0.6s ease-out;
+}
+
+
+    :root {
+      --primary: #2A5555;
+      --secondary: #C5A46D;
+      --accent: #4D8F8F;
+      --deep-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
     body {
-      font-family: 'Tahoma', sans-serif;
-      background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      background: url('kids.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Noto Sans Arabic', sans-serif;
     }
 
-    .container {
-      background-color: #ffffff;
-      padding: 50px;
-      border-radius: 25px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    .luxury-frame {
+      background: rgba(255, 255, 255, 0.60);
+      border-radius: 35px;
+      padding: 2.5rem;
+      width: 95%;
+      max-width: 600px;
+      box-shadow: var(--deep-shadow);
+      border: 3px solid var(--secondary);
+      position: relative;
+      overflow: hidden;
+      margin: 20px;
+    }
+
+    .header-section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      direction: rtl;
+    }
+
+ @keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ministry-info {
+  text-align: right;
+  flex: 1;
+  margin-top: 0rem;
+  animation: fadeSlideDown 5s ease forwards;
+}
+
+ .ministry-line {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--primary);
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل ناعم للبروز */
+}
+
+    .ministry-line.special {
+      color: var(--accent);
+    }
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.ministry-logo {
+  width: 75px;
+  height: auto;
+  margin-top: -15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15), 
+              0 4px 6px rgba(0, 0, 0, 0.10);
+  transition: all 0.3s ease-in-out;
+  animation: fadeSlideDown 5s ease forwards;
+}
+
+    .main-title {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin: 1rem 0;
       text-align: center;
-      max-width: 550px;
-      width: 100%;
-      border: 3px solid #4fc3f7;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-weight: 700;
     }
 
-    h2 {
-      color: #0277bd;
-      margin-bottom: 30px;
-      font-size: 28px;
+    .calendar-type {
+      background: rgba(197, 164, 109, 0.1);
+      border: 2px solid var(--secondary);
+      border-radius: 15px;
+      padding: 1rem;
+      margin: 1.5rem 0;
     }
 
-    label {
-      font-size: 20px;
-      color: #333;
+    .date-selectors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
     }
 
-    input[type="date"] {
-      margin-top: 15px;
-      padding: 12px;
-      font-size: 18px;
-      width: 90%;
-      border: 2px solid #81d4fa;
-      border-radius: 10px;
-    }
-
-    button {
-      margin-top: 25px;
-      padding: 12px 25px;
-      font-size: 18px;
-      background-color: #0288d1;
-      color: white;
-      border: none;
-      border-radius: 10px;
+    .royal-select {
+      background: white;
+      border: 2px solid var(--secondary);
+      border-radius: 12px;
+      padding: 1rem 2.5rem 1rem 1rem;
+      font-size: 1.1rem;
+      color: var(--primary);
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      appearance: none;
+      text-align: center;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232A5555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2em;
     }
 
-    button:hover {
-      background-color: #0277bd;
+    .gold-button {
+      background: linear-gradient(45deg, var(--secondary) 0%, #D4B57D 100%);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(197, 164, 109, 0.3);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      width: 100%;
     }
 
-    #result {
-      margin-top: 30px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #00695c;
+    #resultDisplay {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+      border: 2px dashed var(--accent);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--primary);
+      transition: all 0.3s ease;
     }
 
-    #hijriInfo {
-      margin-top: 10px;
-      font-size: 18px;
-      color: #555;
+    .footer-signatures {
+      margin-top: 2rem;
+      padding: 1rem;
+      border-top: 1px dashed var(--accent);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-family: 'Noto Sans Arabic', sans-serif;
+    }
+
+    .footer-signatures p {
+      margin: 0.3rem 0;
+      line-height: 1.6;
+    }
+
+    .footer-signatures .icon {
+      font-size: 1rem;
+      margin-left: 6px;
+      color: var(--accent);
+    }
+
+
+    @media (max-width: 480px) {
+      .luxury-frame {
+        padding: 1.5rem;
+        border-radius: 25px;
+      }
+
+      .main-title {
+        font-size: 1.6rem;
+      }
+
+      .date-selectors {
+        grid-template-columns: 1fr;
+      }
+
+      .header-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .ministry-info {
+        text-align: right;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>حاسبة مستوى الطفل في الروضة</h2>
-    <label for="birthDate">أدخل تاريخ ميلاد الطفل:</label><br>
-    <input type="date" id="birthDate"><br>
-    <button onclick="checkLevel()">عرض المستوى</button>
-    <div id="result"></div>
-    <div id="hijriInfo"></div>
-  </div>
+  <div class="luxury-frame">
+    <div class="header-section">
+      <div class="ministry-info">
+        <p class="ministry-line">المملكة العربية السعودية</p>
+        <p class="ministry-line">وزارة التعليم</p>
+        <p class="ministry-line special">الروضة الحكومية الثالثة  بسكاكا</p>
+      </div>
+      <img src="ministry-logo.png" class="ministry-logo" alt="شعار الوزارة">
+    </div>
+
+    <h1 class="main-title">نظام تحديد المستوى التعليمي</h1>
+
+    <div class="calendar-type">
+      <select id="calendarType" class="royal-select" onchange="updateCalendar()">
+        <option value="gregorian">التقويم الميلادي</option>
+        <option value="hijri">التقويم الهجري</option>
+      </select>
+    </div>
+
+    <div class="date-selectors">
+      <select id="year" class="royal-select"></select>
+      <select id="month" class="royal-select"></select>
+      <select id="day" class="royal-select"></select>
+    </div>
+
+    <button class="gold-button" onclick="calculateLevel()">استعراض النتيجة</button>
+    <div id="resultDisplay"></div>
+
+    <div class="footer-signatures">
+ <div class="footer-box">
+  <p><span class="icon">👩‍💻</span> برمجة المساعدة الإدارية: <strong>نزلة الفالح</strong></p>
+  <p><span class="icon">👩‍🏫</span> مديرة الروضة: <strong>عبير المطيري</strong></p>
+</div>
 
   <script>
-    function checkLevel() {
-      const birthDate = new Date(document.getElementById('birthDate').value);
-      const result = document.getElementById('result');
-      const hijriInfo = document.getElementById('hijriInfo');
+    const months = {
+      gregorian: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
+      hijri: ['محرم','صفر','ربيع الأول','ربيع الآخر','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة']
+    };
 
-      const level3Start = new Date('2019-08-26');
-      const level3End = new Date('2020-08-25');
+    function populateYears() {
+      const calendarType = document.getElementById('calendarType').value;
+      const yearSelect = document.getElementById('year');
+      yearSelect.innerHTML = '';
 
-      const level2Start = new Date('2020-08-26');
-      const level2End = new Date('2021-08-25');
+      const years = calendarType === 'hijri'
+        ? Array.from({length: 15}, (_, i) => 1438 + i)
+        : Array.from({length: 15}, (_, i) => 2017 + i);
 
-      const level1Start = new Date('2021-08-26');
-      const level1End = new Date('2022-08-25');
-
-      let level = "";
-      if (birthDate >= level3Start && birthDate <= level3End) {
-        level = "المستوى الثالث";
-        hijriInfo.textContent = "من 25 ذو الحجة 1440 هـ إلى 5 محرم 1442 هـ تقريبًا";
-      } else if (birthDate >= level2Start && birthDate <= level2End) {
-        level = "المستوى الثاني";
-        hijriInfo.textContent = "من 6 محرم 1442 هـ إلى 16 محرم 1443 هـ تقريبًا";
-      } else if (birthDate >= level1Start && birthDate <= level1End) {
-        level = "المستوى الأول";
-        hijriInfo.textContent = "من 17 محرم 1443 هـ إلى 27 محرم 1444 هـ تقريبًا";
-      } else {
-        level = "خارج نطاق أعمار الروضة المحددة.";
-        hijriInfo.textContent = "";
-      }
-
-      result.textContent = level;
+      years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      });
     }
+
+    function populateMonths() {
+      const calendarType = document.getElementById('calendarType').value;
+      const monthSelect = document.getElementById('month');
+      monthSelect.innerHTML = '';
+
+      months[calendarType].forEach((month, index) => {
+        const option = document.createElement('option');
+        option.value = index + 1;
+        option.textContent = month;
+        monthSelect.appendChild(option);
+      });
+    }
+
+    function populateDays() {
+      const year = parseInt(document.getElementById('year').value);
+      const month = parseInt(document.getElementById('month').value);
+      const calendarType = document.getElementById('calendarType').value;
+
+      const daysInMonth = calendarType === 'hijri'
+        ? 30 - (month % 2 === 0 ? 0 : 1)
+        : new Date(year, month, 0).getDate();
+
+      const daySelect = document.getElementById('day');
+      daySelect.innerHTML = '';
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        daySelect.appendChild(option);
+      }
+    }
+
+    function updateCalendar() {
+      populateYears();
+      populateMonths();
+      populateDays();
+    }
+
+    window.onload = function () {
+      updateCalendar();
+      document.getElementById('calendarType').addEventListener('change', updateCalendar);
+      document.getElementById('year').addEventListener('change', populateDays);
+      document.getElementById('month').addEventListener('change', populateDays);
+    };
+
+    function hijriToGregorian(hYear, hMonth, hDay) {
+      const approxDate = new Date((hYear - 579) + "-" + hMonth + "-" + hDay);
+      return approxDate;
+    }
+
+function calculateLevel() {
+  const calendarType = document.getElementById('calendarType').value;
+  const y = parseInt(document.getElementById('year').value);
+  const m = parseInt(document.getElementById('month').value);
+  const d = parseInt(document.getElementById('day').value);
+
+  if (!y || !m || !d) {
+    document.getElementById('resultDisplay').textContent = "الرجاء اختيار التاريخ كاملًا";
+    return;
+  }
+
+  let birthDate;
+  if (calendarType === 'gregorian') {
+    birthDate = new Date(y, m - 1, d);
+  } else {
+    birthDate = hijriToGregorian(y, m, d);
+  }
+
+  const level3Start = new Date(2019, 7, 26);
+  const level3End = new Date(2020, 7, 25);
+  const level2Start = new Date(2020, 7, 26);
+  const level2End = new Date(2021, 7, 25);
+  const level1Start = new Date(2021, 7, 26);
+  const level1End = new Date(2022, 7, 25);
+
+  let resultText = '';
+
+  if (birthDate >= level3Start && birthDate <= level3End) {
+    resultText = 'المستوى الثالث 🧒🏻 🎉';
+  } else if (birthDate >= level2Start && birthDate <= level2End) {
+    resultText = 'المستوى الثاني 🧒🏻 🎉';
+  } else if (birthDate >= level1Start && birthDate <= level1End) {
+    resultText = 'المستوى الأول 🧒🏻 🎉';
+  } else {
+    resultText = 'تاريخ الميلاد خارج نطاق أعمار الروضة ❌ 📅';
+  }
+
+  const resultDisplay = document.getElementById('resultDisplay');
+  resultDisplay.classList.remove('show'); // علشان يعيد التأثير إذا ضغط مرتين
+  void resultDisplay.offsetWidth; // لإعادة تشغيل الأنيميشن
+  resultDisplay.textContent = `مستوى الطفل: ${resultText}`;
+  resultDisplay.classList.add('show');
+}
   </script>
 </body>
 </html>
