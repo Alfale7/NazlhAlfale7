@@ -406,13 +406,28 @@ function calculateLevel() {
 
   if (birthDate >= level3Start && birthDate <= level3End) {
     resultText = 'المستوى الثالث';
+confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 }
+});
     emoji = '🧒🏻 🎉';
   } else if (birthDate >= level2Start && birthDate <= level2End) {
     resultText = 'المستوى الثاني';
     emoji = '🧒🏻 🎉';
+confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 }
+});
   } else if (birthDate >= level1Start && birthDate <= level1End) {
     resultText = 'المستوى الأول';
     emoji = '🧒🏻 🎉';
+confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 }
+});
   } else {
     resultText = 'تاريخ الميلاد خارج نطاق أعمار الروضة';
     emoji = '📅 ❌';
@@ -457,8 +472,8 @@ function calculateLevel() {
   resultDisplay.classList.add('show');
 }
 
-
-
   </script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </body>
 </html>
